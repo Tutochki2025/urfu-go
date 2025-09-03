@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6b53wcfk2drr"]
+
+[ext_resource type="Script" path="res://src/map_viewer.gd" id="1_ir5ng"]
+[ext_resource type="Script" path="res://src/main.gd" id="1_xrkms"]
+[ext_resource type="PackedScene" uid="uid://cwwrdaodwfflq" path="res://src/map_item.tscn" id="3_tocgl"]
+[ext_resource type="Texture2D" uid="uid://6oxm8joh0kwg" path="res://assets/urfu-logo.png" id="3_tygil"]
+[ext_resource type="Theme" uid="uid://csk71hs7u21m7" path="res://src/main.tres" id="5_gj2nv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u4fy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh540"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fy8xv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vepog"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 5
+border_color = Color(0.670689, 0.67069, 0.670689, 1)
+
+[sub_resource type="Theme" id="Theme_nalyf"]
+Button/colors/font_color = Color(0.108625, 0.35254, 1, 1)
+Button/colors/font_focus_color = Color(0.162425, 0.16079, 1, 1)
+Button/colors/font_hover_color = Color(0.0682144, 0.340827, 1, 1)
+Button/colors/font_pressed_color = Color(0.000349622, 0.220608, 0.728277, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_kh540")
+Button/styles/hover = SubResource("StyleBoxEmpty_fy8xv")
+Button/styles/normal = SubResource("StyleBoxEmpty_fy8xv")
+Button/styles/pressed = SubResource("StyleBoxEmpty_kh540")
+Label/styles/normal = SubResource("StyleBoxFlat_vepog")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_madnc"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xrkms")
+
+[node name="MapItems" type="Node2D" parent="."]
+
+[node name="MapItem" parent="MapItems" instance=ExtResource("3_tocgl")]
+texture = ExtResource("3_tygil")
+lonlat = Vector2(60.6508, 56.8408)
+
+[node name="Streetmap" type="PanelContainer" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ir5ng")
+
+[node name="MarginContainer" type="MarginContainer" parent="Streetmap"]
+z_index = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Streetmap/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.09
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("5_gj2nv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.00495516, 0.403914, 1, 1)
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5u4fy")
+text = "0 М"
+
+[node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Container" type="Container" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_gj2nv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ZoomIn" type="Button" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_nalyf")
+theme_override_colors/font_color = Color(0.225486, 0.201048, 1, 1)
+theme_override_font_sizes/font_size = 100
+text = "+"
+
+[node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_madnc")
+
+[node name="ZoomOut" type="Button" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_nalyf")
+theme_override_colors/font_color = Color(0.225486, 0.201048, 1, 1)
+theme_override_font_sizes/font_size = 100
+text = "-"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("5_gj2nv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_gj2nv")
+theme_override_font_sizes/font_size = 50
+text = "Твои"
+
+[node name="Label" type="Label" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("5_gj2nv")
+theme_override_font_sizes/font_size = 80
+text = "Питомцы"
+
+[connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ZoomIn" to="." method="_on_zoom_in_pressed"]
+[connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ZoomOut" to="." method="_on_zoom_out_pressed"]
