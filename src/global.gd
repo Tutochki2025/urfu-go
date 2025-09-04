@@ -7,6 +7,7 @@ var save_data: Dictionary = {
 	'password': '',
 	'pets': [],
 	'money': 0,
+	'gps_permission': false
 }
 
 func save_pet(pet_name: String):

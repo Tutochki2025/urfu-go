@@ -1,5 +1,7 @@
 class_name MapItem extends Node2D
 
+signal was_claimed(pets)
+var claimed := false
 
 @export var lonlat: Vector2 = Vector2(0, 0)
 @export var item_resource: ItemResource
@@ -8,10 +10,14 @@ class_name MapItem extends Node2D
 @onready var egg: Sprite2D = get_node("CanvasLayer/Center/Sprite2D")
 @onready var animation:AnimationPlayer = get_node("AnimationPlayer")
 @onready var center: Node2D = get_node("CanvasLayer/Center")
+@onready var control_text: Control = get_node("CanvasLayer/Text")
+@onready var text: Label = get_node("CanvasLayer/Text/VBoxContainer/Label")
+@onready var control_dark: Control = get_node("CanvasLayer/Control")
+@onready var control_light: Control = get_node("CanvasLayer/Control2")
 
 func _ready() -> void:
-	texture.texture = item_resource.pet_image
-	egg.texture = item_resource.pet_image
+	texture.texture = item_resource.egg_image
+	egg.texture = item_resource.egg_image
 	center.position = DisplayServer.window_get_size()/2
 
 func set_pos(streetmap, my_lonlat):
@@ -20,10 +26,29 @@ func set_pos(streetmap, my_lonlat):
 	#scale.y = clamp(scale.y, min_scale.y, max_scale.y)
 
 func _on_button_pressed() -> void:
-	animation.play("egg_take_new")
-	await animation.animation_finished
-	animation.play("egg_opening_1")
-	await animation.animation_finished
-	animation.play("egg_opening_2")
-	#Global.save_pet(item_resource.id)
-	#Global.save_game()
+	if not(claimed):
+		animation.play("egg_take_new")
+		await animation.animation_finished
+		animation.play("egg_opening_1")
+		await animation.animation_finished
+		animation.play("egg_opening_2")
+		await animation.animation_finished
+		egg.texture = item_resource.pet_image
+		control_text.visible = true
+		text.text = item_resource.name
+		animation.play("egg_opening_3")
+		Global.save_pet(item_resource.id)
+		Global.save_game()
+		await get_tree().create_timer(2).timeout
+		control_text.visible = false
+		animation.play_backwards("egg_opening_2")
+		await animation.animation_finished
+		animation.play_backwards("egg_opening_1")
+		await animation.animation_finished
+		control_dark.visible = false
+		control_light.visible = false
+		modulate = Color.DIM_GRAY
+		
+		was_claimed.emit(Global.save_data['pets'])
+		
+		claimed = true

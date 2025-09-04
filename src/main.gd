@@ -8,15 +8,22 @@ class_name Main extends Control
 
 @export var itemreses: Array[ItemResource]
 
+@onready var output = get_node("MarginContainer/VBoxContainer/Output")
+@onready var output2 = get_node("MarginContainer/VBoxContainer/Output2")
+
 var gps_provider
 var my_lonlat: Vector2 = Vector2(0, 0)
 var dragging := false
 
 func _ready():
-	#Global.load_game()
+	Global.load_game()
 	Global.save_game()
 	load_eggs(Global.save_data['pets'])
 	load_items(Global.save_data['pets'])
+	
+	for mapitem in mapitems.get_children():
+		if mapitem.has_signal('was_claimed'):
+			mapitem.was_claimed.connect(load_items)
 	
 	# GPS load
 	get_tree().on_request_permissions_result.connect(perm_check)
@@ -25,19 +32,31 @@ func _ready():
 	#handling the 2 paths code can follow after calling it.
 	var allowed = OS.request_permissions() 
 	if allowed:
+		Global.save_data['permission'] = true
+		Global.save_game()
+		enableGPS()
+	
+	printo('Tried to get gps permission')
+	if Global.save_data['permission']:
+		printo('Already got GPS permission')
 		enableGPS()
 
 func perm_check(permName, wasGranted):
 	if permName == "android.permission.ACCESS_FINE_LOCATION" and wasGranted == true:
+		Global.save_data['permission'] = true
+		Global.save_game()
 		enableGPS()
 
 func enableGPS():
+	printo('enableGPS')
 	gps_provider = Engine.get_singleton("PraxisMapperGPSPlugin")
 	if gps_provider != null:
+		printo('GPS listening started')
 		gps_provider.onLocationUpdates.connect(new_location)
 		gps_provider.StartListening()
 
 func new_location(data: Dictionary):
+	printo('Got new location')
 	my_lonlat = Vector2(data['longitude'], data['latitude'])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	for mapitem in mapitems.get_children():
 		mapitem.set_pos(streetmap, my_lonlat)
 	#$Sprite2D.position = streetmap.lonlat_to_screen(60.65079, 56.84077)
-	
+	printo2(my_lonlat)
 	if dragging:
 		streetmap.queue_redraw()
 
@@ -79,7 +98,7 @@ func load_items(pets):
 		for itemres in itemreses:
 			print(itemres.id)
 			if itemres.id == id:
-				item.set_texture(itemres.egg_image)
+				item.set_texture(itemres.pet_image)
 				item.set_text(itemres.name)
 		itemcontainer.add_child(item)
 
@@ -91,3 +110,9 @@ func _on_gps_pressed() -> void:
 	dragging = true
 	tween.tween_property(self, "dragging", false, 0.0)
 	#streetmap._xyz = Vector3(xy.x, xy.y, streetmap._xyz.z)
+
+func printo(text):
+	output.text = output.text + '\n' + str(text)
+	
+func printo2(text):
+	output2.text = str(text)
