@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6b53wcfk2drr"]
+[gd_scene load_steps=14 format=3 uid="uid://b6b53wcfk2drr"]
 
 [ext_resource type="Script" path="res://src/map_viewer.gd" id="1_ir5ng"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_xrkms"]
 [ext_resource type="PackedScene" uid="uid://cwwrdaodwfflq" path="res://src/map_item.tscn" id="3_tocgl"]
 [ext_resource type="Texture2D" uid="uid://6oxm8joh0kwg" path="res://assets/urfu-logo.png" id="3_tygil"]
 [ext_resource type="Theme" uid="uid://csk71hs7u21m7" path="res://src/main.tres" id="5_gj2nv"]
+[ext_resource type="PackedScene" uid="uid://5y8eobxaj1ni" path="res://me.tscn" id="6_gkdhv"]
+[ext_resource type="Texture2D" uid="uid://s50psr2caa3a" path="res://assets/me.png" id="6_gphnu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u4fy"]
 
@@ -38,12 +40,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xrkms")
-
-[node name="MapItems" type="Node2D" parent="."]
-
-[node name="MapItem" parent="MapItems" instance=ExtResource("3_tocgl")]
-texture = ExtResource("3_tygil")
-lonlat = Vector2(60.6508, 56.8408)
 
 [node name="Streetmap" type="PanelContainer" parent="."]
 z_index = -1
@@ -182,5 +178,17 @@ theme = ExtResource("5_gj2nv")
 theme_override_font_sizes/font_size = 80
 text = "Питомцы"
 
+[node name="MapItems" type="Node2D" parent="."]
+
+[node name="MapItem" parent="MapItems" instance=ExtResource("3_tocgl")]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_tygil")
+lonlat = Vector2(60.6508, 56.8408)
+
+[node name="Me" parent="MapItems" instance=ExtResource("6_gkdhv")]
+texture = ExtResource("6_gphnu")
+
+[connection signal="zoom_in" from="Streetmap" to="." method="_on_streetmap_zoom_in"]
+[connection signal="zoom_out" from="Streetmap" to="." method="_on_streetmap_zoom_out"]
 [connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ZoomIn" to="." method="_on_zoom_in_pressed"]
 [connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ZoomOut" to="." method="_on_zoom_out_pressed"]

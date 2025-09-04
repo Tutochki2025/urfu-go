@@ -37,13 +37,21 @@ func _input(event: InputEvent) -> void:
 	#print(touch_lonlat)
 	print(my_lonlat)
 	for mapitem in mapitems.get_children():
-		mapitem.set_zoom(streetmap)
+		mapitem.set_pos(streetmap, my_lonlat)
 	#$Sprite2D.position = streetmap.lonlat_to_screen(60.65079, 56.84077)
 	#print(dif.length())
-
 
 func _on_zoom_in_pressed() -> void:
 	streetmap.apply_zoom(1.05, DisplayServer.window_get_size()/2)
 
 func _on_zoom_out_pressed() -> void:
 	streetmap.apply_zoom(0.95, DisplayServer.window_get_size()/2)
+
+
+func _on_streetmap_zoom_in() -> void:
+	for mapitem in mapitems.get_children():
+		mapitem.scale *= 2
+
+func _on_streetmap_zoom_out() -> void:
+	for mapitem in mapitems.get_children():
+		mapitem.scale /= 2

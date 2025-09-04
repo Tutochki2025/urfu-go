@@ -1,5 +1,8 @@
 class_name MapViewer extends Control
 
+signal zoom_in
+signal zoom_out
+
 const TILE_WIDTH:float = 256.0
 const TILE_HEIGHT:float = 256.0
 
@@ -54,8 +57,10 @@ func _input(e):
 	if e is InputEventMouseButton:
 		if e.pressed and _rollover:
 			if e.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				
 				apply_zoom(0.95, get_local_mouse_position())
 			elif e.button_index == MOUSE_BUTTON_WHEEL_UP:
+				
 				apply_zoom(1.05, get_local_mouse_position())
 		
 		if e.button_index == MOUSE_BUTTON_LEFT:
@@ -79,6 +84,10 @@ func _input(e):
 		queue_redraw()
 
 func apply_zoom(multiplier: float, pivot: Vector2):
+	if multiplier > 1:
+		zoom_in.emit()
+	else:
+		zoom_out.emit()
 	var p1 = screen_to_world(pivot.x, pivot.y)
 	_xyz.z = max(min(_xyz.z*multiplier, MAX_ZOOM),MIN_ZOOM)
 	var p2 = screen_to_world(pivot.x, pivot.y)

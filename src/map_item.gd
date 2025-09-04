@@ -10,10 +10,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func set_zoom(streetmap):
+func set_pos(streetmap, my_lonlat):
 	position = streetmap.lonlat_to_screen(lonlat.x, lonlat.y)
-	var z = streetmap._xyz.z
-	if z < 15:
-		scale = Vector2(0.02, 0.02)*max(1, z)
-	else:
-		scale = Vector2(0.04, 0.04)*max(1, z)
+
+func _on_button_pressed() -> void:
+	print(55)
+
+
+func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print(56)
