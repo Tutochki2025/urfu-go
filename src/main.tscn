@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6b53wcfk2drr"]
+[gd_scene load_steps=25 format=3 uid="uid://b6b53wcfk2drr"]
 
 [ext_resource type="Script" path="res://src/map_viewer.gd" id="1_ir5ng"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_xrkms"]
 [ext_resource type="Script" path="res://src/item_resource.gd" id="2_e3pet"]
 [ext_resource type="PackedScene" uid="uid://cwwrdaodwfflq" path="res://src/map_item.tscn" id="3_tocgl"]
 [ext_resource type="Theme" uid="uid://csk71hs7u21m7" path="res://src/main.tres" id="5_gj2nv"]
+[ext_resource type="Resource" uid="uid://ecsbyoq54to2" path="res://src/radio_item.tres" id="5_qec41"]
 [ext_resource type="PackedScene" uid="uid://5y8eobxaj1ni" path="res://src/me.tscn" id="6_gkdhv"]
 [ext_resource type="Texture2D" uid="uid://s50psr2caa3a" path="res://assets/me.png" id="6_gphnu"]
 [ext_resource type="Texture2D" uid="uid://dcqy2y7fgejgw" path="res://assets/money.png" id="6_vaiuu"]
@@ -90,7 +91,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xrkms")
-itemreses = Array[ExtResource("2_e3pet")]([ExtResource("7_fislk")])
+itemreses = Array[ExtResource("2_e3pet")]([ExtResource("7_fislk"), ExtResource("11_66elm"), ExtResource("5_qec41")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 3
@@ -314,6 +315,7 @@ theme_override_constants/margin_bottom = 20
 [node name="ItemContainer" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 20
 
 [node name="MapItems" type="Node2D" parent="."]
 
@@ -328,6 +330,10 @@ item_resource = ExtResource("7_fislk")
 [node name="GUK" parent="MapItems" instance=ExtResource("3_tocgl")]
 lonlat = Vector2(60.6541, 56.8441)
 item_resource = ExtResource("11_66elm")
+
+[node name="RADIO" parent="MapItems" instance=ExtResource("3_tocgl")]
+lonlat = Vector2(60.6077, 56.8395)
+item_resource = ExtResource("5_qec41")
 
 [connection signal="zoom_in" from="Streetmap" to="." method="_on_streetmap_zoom_in"]
 [connection signal="zoom_out" from="Streetmap" to="." method="_on_streetmap_zoom_out"]

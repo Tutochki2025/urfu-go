@@ -97,6 +97,9 @@ func load_eggs(pets):
 
 func load_items(pets):
 	print(pets)
+	for item in itemcontainer.get_children():
+		itemcontainer.remove_child(item)
+		item.queue_free()
 	for id in pets:
 		var item: MyItem = myitem.instantiate()
 		print(1)
