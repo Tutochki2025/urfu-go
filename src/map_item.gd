@@ -1,21 +1,29 @@
-class_name MapItem extends Sprite2D
+class_name MapItem extends Node2D
 
-@export var max_scale: Vector2 = Vector2(1, 1)
-@export var min_scale: Vector2 = Vector2(0.2, 0.2)
+
 @export var lonlat: Vector2 = Vector2(0, 0)
+@export var item_resource: ItemResource
+
+@onready var texture: Sprite2D = get_node("Sprite2D")
+@onready var egg: Sprite2D = get_node("CanvasLayer/Center/Sprite2D")
+@onready var animation:AnimationPlayer = get_node("AnimationPlayer")
+@onready var center: Node2D = get_node("CanvasLayer/Center")
 
 func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
+	texture.texture = item_resource.pet_image
+	egg.texture = item_resource.pet_image
+	center.position = DisplayServer.window_get_size()/2
 
 func set_pos(streetmap, my_lonlat):
-	position = streetmap.lonlat_to_screen(lonlat.x, lonlat.y)
+	global_position = streetmap.lonlat_to_screen(lonlat.x, lonlat.y)
+	#scale.x = clamp(scale.x, min_scale.x, max_scale.x)
+	#scale.y = clamp(scale.y, min_scale.y, max_scale.y)
 
 func _on_button_pressed() -> void:
-	print(55)
-
-
-func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print(56)
+	animation.play("egg_take_new")
+	await animation.animation_finished
+	animation.play("egg_opening_1")
+	await animation.animation_finished
+	animation.play("egg_opening_2")
+	#Global.save_pet(item_resource.id)
+	#Global.save_game()

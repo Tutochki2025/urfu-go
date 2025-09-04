@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmshtb3uhu5ur"]
+
+[ext_resource type="Script" path="res://src/my_item.gd" id="1_mpu2l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nct1f"]
+
+[node name="MyItem" type="VBoxContainer"]
+offset_right = 125.0
+offset_bottom = 137.0
+alignment = 1
+script = ExtResource("1_mpu2l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.724643, 0.724643, 0.724643, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nct1f")
+text = "Паавп"
+horizontal_alignment = 1

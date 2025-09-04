@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func set_pos(streetmap, my_lonlat):
 	position = streetmap.lonlat_to_screen(my_lonlat.x, my_lonlat.y)
-	#var z = streetmap._xyz.z
+	#await animation.animation_finishedvar z = streetmap._xyz.z
 	#if z < 15:
 	#	scale = Vector2(0.02, 0.02)*z**2
 	#else:

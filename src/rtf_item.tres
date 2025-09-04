@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://btwod58nysvww"]
+
+[ext_resource type="Script" path="res://src/item_resource.gd" id="1_nr6gf"]
+[ext_resource type="Texture2D" uid="uid://d3m0oo7esa8g" path="res://assets/rtf_egg.png" id="1_y6643"]
+
+[resource]
+script = ExtResource("1_nr6gf")
+pet_image = ExtResource("1_y6643")
+egg_image = ExtResource("1_y6643")
+name = "Осьминожка"
+info = "ИРИТ-РТФ"
+id = "RTF"

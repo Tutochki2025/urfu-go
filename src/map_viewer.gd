@@ -6,7 +6,7 @@ signal zoom_out
 const TILE_WIDTH:float = 256.0
 const TILE_HEIGHT:float = 256.0
 
-const MIN_ZOOM:float = 1.0
+const MIN_ZOOM:float = 12.0
 const MAX_ZOOM:float = 20.0
 
 @export
@@ -26,7 +26,7 @@ var max_cached_tiles:int = 200
 @export_range(0,25,1)
 var max_zoom_level:int = 21
 
-var _xyz:Vector3 = Vector3(0.336967,0.385693,15.298)
+var _xyz:Vector3 = Vector3(0.336967,0.385693,17.5)
 var _cache:Dictionary = {}
 var _queue:Dictionary = {}
 var _error:Dictionary = {}
@@ -84,12 +84,16 @@ func _input(e):
 		queue_redraw()
 
 func apply_zoom(multiplier: float, pivot: Vector2):
-	if multiplier > 1:
-		zoom_in.emit()
+	print(_xyz.z == MAX_ZOOM)
+	if (multiplier > 1):
+		if _xyz.z*multiplier < MAX_ZOOM:
+			_xyz.z = _xyz.z*multiplier
+			zoom_in.emit()
 	else:
-		zoom_out.emit()
+		if _xyz.z*multiplier > MIN_ZOOM:
+			_xyz.z = _xyz.z*multiplier
+			zoom_out.emit()
 	var p1 = screen_to_world(pivot.x, pivot.y)
-	_xyz.z = max(min(_xyz.z*multiplier, MAX_ZOOM),MIN_ZOOM)
 	var p2 = screen_to_world(pivot.x, pivot.y)
 	_xyz.x -= p2.x-p1.x
 	_xyz.y -= p2.y-p1.y

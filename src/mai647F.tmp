@@ -1,29 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6b53wcfk2drr"]
+[gd_scene load_steps=14 format=3 uid="uid://b6b53wcfk2drr"]
 
 [ext_resource type="Script" path="res://src/map_viewer.gd" id="1_ir5ng"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_xrkms"]
-[ext_resource type="Script" path="res://src/item_resource.gd" id="2_e3pet"]
 [ext_resource type="PackedScene" uid="uid://cwwrdaodwfflq" path="res://src/map_item.tscn" id="3_tocgl"]
+[ext_resource type="Texture2D" uid="uid://6oxm8joh0kwg" path="res://assets/urfu-logo.png" id="3_tygil"]
 [ext_resource type="Theme" uid="uid://csk71hs7u21m7" path="res://src/main.tres" id="5_gj2nv"]
 [ext_resource type="PackedScene" uid="uid://5y8eobxaj1ni" path="res://src/me.tscn" id="6_gkdhv"]
 [ext_resource type="Texture2D" uid="uid://s50psr2caa3a" path="res://assets/me.png" id="6_gphnu"]
-[ext_resource type="Texture2D" uid="uid://dcqy2y7fgejgw" path="res://assets/money.png" id="6_vaiuu"]
-[ext_resource type="Resource" uid="uid://btwod58nysvww" path="res://src/rtf_item.tres" id="7_fislk"]
-[ext_resource type="Texture2D" uid="uid://2qw4an63i803" path="res://assets/me_button.png" id="7_p0buf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw232"]
-content_margin_left = 10.0
-bg_color = Color(0.82606, 0.82606, 0.82606, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u4fy"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_1m65a"]
-font_size = 40
-font_color = Color(0.156664, 0.45497, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh540"]
 
@@ -47,36 +32,6 @@ Label/styles/normal = SubResource("StyleBoxFlat_vepog")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_madnc"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ius4b"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_113vo"]
-content_margin_left = 5.0
-content_margin_top = 10.0
-content_margin_right = 5.0
-content_margin_bottom = 10.0
-bg_color = Color(0.82179, 0.821788, 0.821789, 1)
-border_width_left = 4
-border_width_top = 2
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00b4m"]
-content_margin_left = 5.0
-content_margin_top = 10.0
-content_margin_right = 5.0
-content_margin_bottom = 10.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 2
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -85,7 +40,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xrkms")
-itemreses = Array[ExtResource("2_e3pet")]([ExtResource("7_fislk")])
 
 [node name="Streetmap" type="PanelContainer" parent="."]
 z_index = -1
@@ -110,7 +64,7 @@ layout_mode = 2
 [node name="MarginContainer2" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.07
+size_flags_stretch_ratio = 0.09
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 
@@ -120,42 +74,19 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-size_flags_vertical = 4
 theme = ExtResource("5_gj2nv")
 
 [node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_pw232")
-
-[node name="Label" type="Label" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="Label" type="Label" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.00495516, 0.403914, 1, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 90
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5u4fy")
 text = "0 М"
-label_settings = SubResource("LabelSettings_1m65a")
-
-[node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("6_vaiuu")
 
 [node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -177,13 +108,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
-theme_override_constants/separation = 30
-alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 6
 theme = ExtResource("5_gj2nv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer"]
@@ -209,22 +138,6 @@ theme = SubResource("Theme_nalyf")
 theme_override_colors/font_color = Color(0.225486, 0.201048, 1, 1)
 theme_override_font_sizes/font_size = 100
 text = "-"
-
-[node name="GPS" type="Button" parent="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ius4b")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_113vo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_00b4m")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_113vo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_113vo")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_00b4m")
-theme_override_styles/normal = SubResource("StyleBoxFlat_00b4m")
-icon = ExtResource("7_p0buf")
-icon_alignment = 1
-expand_icon = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -255,40 +168,27 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("5_gj2nv")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "Твои"
 
 [node name="Label" type="Label" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("5_gj2nv")
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 80
 text = "Питомцы"
-
-[node name="MarginContainer" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="ItemContainer" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="MapItems" type="Node2D" parent="."]
 
 [node name="Me" parent="MapItems" instance=ExtResource("6_gkdhv")]
-scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_gphnu")
 
-[node name="RTF" parent="MapItems" instance=ExtResource("3_tocgl")]
+[node name="MapItem" parent="MapItems" instance=ExtResource("3_tocgl")]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_tygil")
 lonlat = Vector2(60.6507, 56.8407)
-item_resource = ExtResource("7_fislk")
 
 [connection signal="zoom_in" from="Streetmap" to="." method="_on_streetmap_zoom_in"]
 [connection signal="zoom_out" from="Streetmap" to="." method="_on_streetmap_zoom_out"]
 [connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ZoomIn" to="." method="_on_zoom_in_pressed"]
 [connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ZoomOut" to="." method="_on_zoom_out_pressed"]
-[connection signal="pressed" from="Streetmap/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/VBoxContainer/GPS" to="." method="_on_gps_pressed"]
