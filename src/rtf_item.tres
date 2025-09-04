@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://btwod58nysvww"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://btwod58nysvww"]
 
 [ext_resource type="Script" path="res://src/item_resource.gd" id="1_nr6gf"]
 [ext_resource type="Texture2D" uid="uid://d3m0oo7esa8g" path="res://assets/rtf_egg.png" id="1_y6643"]
+[ext_resource type="Texture2D" uid="uid://cu54mt85otu4x" path="res://assets/rtf-info.png" id="2_j828r"]
 [ext_resource type="Texture2D" uid="uid://dcvmtd23c5dq5" path="res://assets/rtf_pet.png" id="2_oewlh"]
 
 [resource]
@@ -9,5 +10,18 @@ script = ExtResource("1_nr6gf")
 pet_image = ExtResource("2_oewlh")
 egg_image = ExtResource("1_y6643")
 name = "Осьминожка"
-info = "ИРИТ-РТФ"
+info = "ИРИТ-РТФ - это один из крупнейших институтов УрФУ, готовящий специалистов в области IT-технологий, ИИ, кибербезопасности, радиоэлектроники и иных технических наук.
+
+Здесь же практикуются ИОТ (индивидуальные образовательные траектории) и иные треки подготовки для студентов.
+
+В 2026 году институт переезжает в НОВЫЙ УЧЕБНЫЙ КАМПУС в Новокольцовском районе (доступен на карте).
+
+Известные кричалки:
+\"Все радисты с детства знают
+тройку самых важных слов:
+РТФ, УрФУ, Попов.
+\"Родился радистом - умру программистом\".
+
+"
+info_image = ExtResource("2_j828r")
 id = "RTF"

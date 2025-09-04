@@ -12,7 +12,7 @@ class_name Main extends Control
 @onready var output2 = get_node("MarginContainer/VBoxContainer/Output2")
 
 var gps_provider
-var my_lonlat: Vector2 = Vector2(0, 0)
+
 var dragging := false
 
 func _ready():
@@ -56,18 +56,22 @@ func enableGPS():
 		gps_provider.StartListening()
 
 func new_location(data: Dictionary):
-	printo('Got new location')
-	my_lonlat = Vector2(data['longitude'], data['latitude'])
+	Global.my_lonlat = Vector2(data['longitude'], data['latitude'])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var mousepos = get_local_mouse_position()
 	var touch_lonlat = streetmap.screen_to_lonlat(mousepos.x, mousepos.y)
-	var dif = touch_lonlat - my_lonlat
+	var dif = touch_lonlat - Global.my_lonlat
+	
+	var str = ''
 	for mapitem in mapitems.get_children():
-		mapitem.set_pos(streetmap, my_lonlat)
+		if mapitem is MapItem:
+			str += str((Global.my_lonlat-mapitem.lonlat).length()) + ' '
+		mapitem.set_pos(streetmap, Global.my_lonlat)
 	#$Sprite2D.position = streetmap.lonlat_to_screen(60.65079, 56.84077)
-	printo2(my_lonlat)
+	#printo2(str((Global.my_lonlat-touch_lonlat).length()))
+	printo2(touch_lonlat)
 	if dragging:
 		streetmap.queue_redraw()
 
@@ -88,7 +92,8 @@ func _on_streetmap_zoom_out() -> void:
 func load_eggs(pets):
 	for mapitem in mapitems.get_children():
 		if mapitem.name in pets:
-			mapitem.self_modulate = Color.DIM_GRAY
+			mapitem.modulate = Color.DIM_GRAY
+			mapitem.claimed = true
 
 func load_items(pets):
 	print(pets)
@@ -104,7 +109,7 @@ func load_items(pets):
 
 
 func _on_gps_pressed() -> void:
-	var xy = streetmap.lonlat_to_world(my_lonlat.x, my_lonlat.y)
+	var xy = streetmap.lonlat_to_world(Global.my_lonlat.x, Global.my_lonlat.y)
 	var tween = get_tree().create_tween()
 	tween.tween_property(streetmap, "_xyz", Vector3(xy.x, xy.y, streetmap._xyz.z), 1.0).set_trans(Tween.TRANS_SINE)
 	dragging = true

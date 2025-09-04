@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=3 uid="uid://ddrgwig1vsxyd"]
+
+[ext_resource type="Script" path="res://src/info.gd" id="1_fbuqx"]
+[ext_resource type="Texture2D" uid="uid://cu54mt85otu4x" path="res://assets/rtf-info.png" id="2_cggdu"]
+[ext_resource type="Theme" uid="uid://csk71hs7u21m7" path="res://src/main.tres" id="3_828ir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rgi7"]
+bg_color = Color(0.973535, 0.973535, 0.973535, 1)
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2kkc"]
+bg_color = Color(0.141956, 0.348105, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elnbw"]
+bg_color = Color(0.0431992, 0, 0.926565, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qm1m"]
+bg_color = Color(0.209644, 0.527092, 1, 1)
+border_width_right = 15
+border_color = Color(0.624946, 0.749588, 1, 1)
+
+[sub_resource type="Theme" id="Theme_g14il"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_u2kkc")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_elnbw")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_elnbw")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_7qm1m")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_7qm1m")
+
+[sub_resource type="LabelSettings" id="LabelSettings_a71mb"]
+font_size = 30
+font_color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[node name="Info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_fbuqx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HFlowContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container" type="Container" parent="HBoxContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7rgi7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HFlowContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_g14il")
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_cggdu")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "ИРИТ-РТФ - это один из крупнейших институтов УрФУ, готовящий специалистов в области IT-технологий, ИИ, кибербезопасности, радиоэлектроники и иных технических наук.
+
+Здесь же практикуются ИОТ (индивидуальные образовательные траектории) и иные треки подготовки для студентов.
+
+В 2026 году институт переезжает в НОВЫЙ УЧЕБНЫЙ КАМПУС в Новокольцовском районе (доступен на карте).
+
+Известные кричалки:
+\"Все радисты с детства знают
+тройку самых важных слов:
+РТФ, УрФУ, Попов.
+\"Родился радистом - умру программистом\".
+
+"
+label_settings = SubResource("LabelSettings_a71mb")
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_828ir")
+theme_override_font_sizes/font_size = 50
+text = "Открыть яйцо"
+
+[node name="Container2" type="Container" parent="HBoxContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Container2" type="Container" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[connection signal="pressed" from="HBoxContainer/HFlowContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

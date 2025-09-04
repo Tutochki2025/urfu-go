@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6b53wcfk2drr"]
+[gd_scene load_steps=24 format=3 uid="uid://b6b53wcfk2drr"]
 
 [ext_resource type="Script" path="res://src/map_viewer.gd" id="1_ir5ng"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_xrkms"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dcqy2y7fgejgw" path="res://assets/money.png" id="6_vaiuu"]
 [ext_resource type="Resource" uid="uid://btwod58nysvww" path="res://src/rtf_item.tres" id="7_fislk"]
 [ext_resource type="Texture2D" uid="uid://2qw4an63i803" path="res://assets/me_button.png" id="7_p0buf"]
+[ext_resource type="Resource" uid="uid://b6fcb0lwlx6ui" path="res://src/guk_item.tres" id="11_66elm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o6yxy"]
 line_spacing = 1.0
@@ -26,7 +27,7 @@ corner_radius_bottom_left = 20
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u4fy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1m65a"]
-font_size = 40
+font_size = 45
 font_color = Color(0.156664, 0.45497, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh540"]
@@ -124,6 +125,7 @@ theme_override_font_sizes/font_size = 15
 label_settings = SubResource("LabelSettings_o6yxy")
 
 [node name="Streetmap" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0.717647)
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -322,6 +324,10 @@ texture = ExtResource("6_gphnu")
 [node name="RTF" parent="MapItems" instance=ExtResource("3_tocgl")]
 lonlat = Vector2(60.6507, 56.8407)
 item_resource = ExtResource("7_fislk")
+
+[node name="GUK" parent="MapItems" instance=ExtResource("3_tocgl")]
+lonlat = Vector2(60.6541, 56.8441)
+item_resource = ExtResource("11_66elm")
 
 [connection signal="zoom_in" from="Streetmap" to="." method="_on_streetmap_zoom_in"]
 [connection signal="zoom_out" from="Streetmap" to="." method="_on_streetmap_zoom_out"]

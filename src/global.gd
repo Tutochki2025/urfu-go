@@ -10,6 +10,8 @@ var save_data: Dictionary = {
 	'gps_permission': false
 }
 
+var my_lonlat: Vector2 = Vector2(0, 0)
+
 func save_pet(pet_name: String):
 	save_data['pets'].append(pet_name)
 

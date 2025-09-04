@@ -482,6 +482,8 @@ position = Vector2(0, 2000)
 scale = Vector2(2, 2)
 texture = ExtResource("2_471w3")
 
+[node name="InfoCanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_c0kbh")
