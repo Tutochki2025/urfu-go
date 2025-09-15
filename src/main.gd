@@ -70,8 +70,8 @@ func _physics_process(delta: float) -> void:
 			str += str((Global.my_lonlat-mapitem.lonlat).length()) + ' '
 		mapitem.set_pos(streetmap, Global.my_lonlat)
 	#$Sprite2D.position = streetmap.lonlat_to_screen(60.65079, 56.84077)
-	#printo2(str((Global.my_lonlat-touch_lonlat).length()))
-	printo2(touch_lonlat)
+	printo2(str((Global.my_lonlat-touch_lonlat).length()))
+	#printo2(touch_lonlat)
 	if dragging:
 		streetmap.queue_redraw()
 

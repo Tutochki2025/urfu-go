@@ -31,7 +31,9 @@ func set_pos(streetmap, my_lonlat):
 	#scale.y = clamp(scale.y, min_scale.y, max_scale.y)
 
 func _on_button_pressed() -> void:
-	if not(claimed):
+	var diff = (Global.my_lonlat - lonlat).length()
+	#0.00095
+	if not(claimed):# and diff <= 0.00095:
 		var info_window = info.instantiate()
 		info_window.setup(item_resource.info_image, item_resource.info)
 		info_canvas_layer.add_child(info_window)

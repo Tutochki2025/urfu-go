@@ -147,6 +147,7 @@ theme_override_constants/margin_top = 50
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.07
@@ -268,7 +269,7 @@ expand_icon = true
 [node name="HBoxContainer3" type="HBoxContainer" parent="Streetmap/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
+size_flags_stretch_ratio = 0.25
 
 [node name="PanelContainer" type="PanelContainer" parent="Streetmap/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2

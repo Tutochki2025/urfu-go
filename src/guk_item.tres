@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cc3o502e70ksp" path="res://assets/guk_egg.png" id="1_3yenm"]
 [ext_resource type="Texture2D" uid="uid://by13gy2nc1hlu" path="res://assets/guk-info.png" id="2_80amx"]
-[ext_resource type="Texture2D" uid="uid://dcvmtd23c5dq5" path="res://assets/rtf_pet.png" id="3_wn4tb"]
+[ext_resource type="Texture2D" uid="uid://3t46uknx5nop" path="res://assets/guk_pet.png" id="3_cw0h0"]
 [ext_resource type="Script" path="res://src/item_resource.gd" id="4_pm44r"]
 
 [resource]
 script = ExtResource("4_pm44r")
-pet_image = ExtResource("3_wn4tb")
+pet_image = ExtResource("3_cw0h0")
 egg_image = ExtResource("1_3yenm")
 name = "Лисичка"
 info = "ГУК УрФУ - главный учебный корпус Уральского Федерального университета, являющийся его визитной карточкой."

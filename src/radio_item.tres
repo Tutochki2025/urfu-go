@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://d4j5pewep1aql" path="res://assets/popov_pet.png" id="1_itcyc"]
 [ext_resource type="Texture2D" uid="uid://r58w814a3thc" path="res://assets/popov-info.png" id="2_n3dij"]
-[ext_resource type="Texture2D" uid="uid://dcvmtd23c5dq5" path="res://assets/rtf_pet.png" id="3_5yldm"]
+[ext_resource type="Texture2D" uid="uid://uvlpe42bvnkr" path="res://assets/popov_pet_2.png" id="3_vlew3"]
 [ext_resource type="Script" path="res://src/item_resource.gd" id="4_t4ibi"]
 
 [resource]
 script = ExtResource("4_t4ibi")
-pet_image = ExtResource("3_5yldm")
+pet_image = ExtResource("3_vlew3")
 egg_image = ExtResource("1_itcyc")
 name = "Радик"
 info = "Александр Степанович Попов - первый российский радиотехник и один из первых изобретателей радио во всём мире.
